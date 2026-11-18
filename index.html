@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Фотоальбом — Галерея світлин</title>
+  <style>
+    :root { --bg:#f7fafc; --card:#ffffff; --accent:#2563eb; --muted:#6b7280; }
+    body { font-family: Inter, system-ui, Arial, sans-serif; margin:0; background:var(--bg); color:#111827; }
+    .container { max-width:980px; margin:32px auto; padding:20px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+    h1 { margin:0; font-size:1.6rem; }
+    nav a { margin-left:14px; text-decoration:none; color:var(--muted); font-weight:500; }
+    nav a:hover { color:var(--accent); }
+    .card { background:var(--card); border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(16,24,40,0.06); margin-bottom:18px; }
+    .controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:18px; }
+    .photo-item { background:#f9fafb; border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; transition: transform 0.2s; }
+    .photo-item:hover { transform: translateY(-3px); }
+    .photo-item img { width:100%; height:200px; object-fit:cover; display:block; background:#e5e7eb; }
+    .photo-caption { padding:12px; }
+    .photo-caption h4 { margin:0 0 6px 0; font-size:1.05rem; }
+    .photo-caption p { margin:0; color:var(--muted); font-size:0.9rem; }
+    button, .upload-label { border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:600; background:var(--accent); color:#fff; font-size:0.9rem; display:inline-block; }
+    .btn-secondary { background:#e5e7eb; color:#111827; }
+    footer { margin-top:24px; text-align:center; color:var(--muted); font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Мій Фотоальбом</h1>
+      <nav>
+        <a href="#gallery">Всі фото</a>
+        <a href="#about">Про альбом</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card" id="gallery">
+        <h2>Галерея світлин</h2>
+        <p style="color:var(--muted)">Колекція фотографій природи, архітектури та подорожей.</p>
+
+        <div class="controls">
+          <button id="showAllBtn">Показати всі фото</button>
+          <button class="btn-secondary" id="countBtn">Порахувати світлини</button>
+          <label class="upload-label" for="fileInput">+ Додати фото з комп'ютера</label>
+          <input type="file" id="fileInput" accept="image/*" multiple style="display:none;" />
+        </div>
+        <p id="statusOut" style="margin-top:10px; font-weight:600; color:var(--accent);"></p>
+
+        <div class="gallery" id="photoGrid">
+          <div class="photo-item">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Гірська долина" />
+            <div class="photo-caption">
+              <h4>Ранкові гори</h4>
+              <p>Світанок над гірським озером та хвойним лісом.</p>
+            </div>
+          </div>
+
+          <div class="photo-item">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Сонячний ліс" />
+            <div class="photo-caption">
+              <h4>Сонячний ліс</h4>
+              <p>Промені ранкового сонця крізь дерева.</p>
+            </div>
+          </div>
+
+          <div class="photo-item">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Гірський хребет" />
+            <div class="photo-caption">
+              <h4>Карпатські схили</h4>
+              <p>Панорама гірського хребта на заході сонця.</p>
+            </div>
+          </div>
+
+          <div class="photo-item">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Туман у горах" />
+            <div class="photo-caption">
+              <h4>Ранковий туман</h4>
+              <p>Атмосферний ранок у заповідній долині.</p>
+            </div>
+          </div>
+
+          <div class="photo-item">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Гірське озеро" />
+            <div class="photo-caption">
+              <h4>Блакитне озеро</h4>
+              <p>Кришталево чиста вода в оточенні скель.</p>
+            </div>
+          </div>
+
+          <div class="photo-item">
+            <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=800&q=80" alt="Лісовий водоспад" />
+            <div class="photo-caption">
+              <h4>Гірський водоспад</h4>
+              <p>Стрімкий потік води серед кам'яних ущелин.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="about">
+        <h3>Про фотоальбом</h3>
+        <p style="color:var(--muted)">Веб-галерея створена з використанням HTML5, CSS Grid та JavaScript. Підтримує автоматичне адаптування під екрани смартфонів та ПК.</p>
+      </section>
+
+      <section class="card" id="contact">
+        <h3>Контакти автора</h3>
+        <p style="color:var(--muted)">Електронна пошта: student@example.com</p>
+      </section>
+    </main>
+
+    <footer>
+      <small>Оновлено: <span id="now"></span></small>
+    </footer>
+  </div>
+
+  <script>
+    // Поточна дата у футері
+    document.getElementById('now').textContent = new Date().toLocaleDateString('uk-UA');
+
+    const grid = document.getElementById('photoGrid');
+    const statusOut = document.getElementById('statusOut');
+
+    // Кнопка "Показати всі фото"
+    document.getElementById('showAllBtn').addEventListener('click', function() {
+      const items = document.querySelectorAll('.photo-item');
+      items.forEach(item => item.style.display = 'block');
+      statusOut.textContent = 'Відображено всі фотографії (' + items.length + ' шт.)';
+    });
+
+    // Кнопка підрахунку фото
+    document.getElementById('countBtn').addEventListener('click', function() {
+      const count = document.querySelectorAll('.photo-item').length;
+      statusOut.textContent = 'Загальна кількість світлин у альбомі: ' + count;
+    });
+
+    // Додавання власних фотографій з комп'ютера
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const files = event.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const card = document.createElement('div');
+          card.className = 'photo-item';
+          card.innerHTML = `
+            <img src="${e.target.result}" alt="${file.name}" />
+            <div class="photo-caption">
+              <h4>${file.name.replace(/\.[^/.]+$/, "")}</h4>
+              <p>Додано користувачем</p>
+            </div>
+          `;
+          grid.appendChild(card);
+          statusOut.textContent = 'Додано нові фото! Всього в альбомі: ' + document.querySelectorAll('.photo-item').length;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
